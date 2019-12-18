@@ -75,11 +75,21 @@ class ViewController: UITableViewController {
         cell.movieImage.layer.cornerRadius = 42
         cell.movieImage.clipsToBounds = true
         
-//        cell.textLabel?.text = movie.title
-//        cell.imageView?.image = movie.image
-        
         return cell
     }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if ( segue.identifier == "item_movie" ) {
+            
+            if let indexPath = tableView.indexPathForSelectedRow {
+         
+                let detailViewController = segue.destination as! DetailViewController
+                detailViewController.movie = self.movies[ indexPath.row ]
+                
+            }
+        }
+    }
 }
 
